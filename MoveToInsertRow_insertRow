@@ -1,0 +1,68 @@
+//PACKAGE
+package com.pratik.jdbc_Resultset;
+	//importing the LIBRARIES
+import java.io.*;
+import java.sql.*;
+
+public class MoveToInsertRow_insertRow 	//CLASS STARTS
+{
+	public static void main(String[] args)//main() function starts
+	{
+		//declaring the resources
+	Connection con=null;
+	Statement st=null;
+	ResultSet rs=null;
+	BufferedReader br=null;
+		try 		//try block starts
+		{
+				//loading and registering the resources
+			Class.forName("oracle.jdbc.OracleDriver");
+			con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","2238");
+			//CRATE YHE RESULTSET OBJECT
+			st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+			br=new BufferedReader(new InputStreamReader(System.in));
+			
+			String sql="Select * from emp10";		//WRITING THE SQL QUERY	
+			rs=st.executeQuery(sql);
+			
+			rs.moveToInsertRow();			//MOVE RS CURSOR TO THE ENDOF RS OBJECT
+			
+			System.out.println("\n\t===Enter the Data===");
+			System.out.print("\n\t--------------------");
+				while(rs.next())		//TAKING THE DYNAMIC/USER INPUT	
+				{
+
+					System.out.print("\n\tEnter the ID: ");
+					int eno=Integer.parseInt(br.readLine());
+					System.out.println("\n\tEnter the Name: ");
+					String ename=br.readLine()	;
+					System.out.print("\n\tEnter the Salary: ");
+					float esal=Float.parseFloat(br.readLine());
+							//INSERTING RECORDS ON RS OBJECT
+						rs.updateInt(1, eno);
+						rs.updateString(2, ename);
+						rs.updateFloat(3, esal);
+							//INSERTING RECORDS/ROW ON DATABASE TABLE
+							rs.insertRow();
+							System.out.print("\n\t------------------------------------");
+							System.out.print("\n\t"+eno+"\t"+ename+"\t"+esal);
+							System.out.print("\n\t------------------------------------");
+					System.out.print("\n-------Do you want to Add one more Column(y/n): ");
+					 String cont=br.readLine();
+						if(cont.equals("y")||cont.equals("Y"))
+						{
+							continue;							
+						}	else
+							{	
+								break;
+							}
+							
+				}		//WHILE CLOSE
+				
+
+
+	System.out.print("\n\n----END OF PROGRAMME----by Pratik-----\n");
+
+	}			//MAIN() METHOD ENDS
+
+	}	//CLASS CLOSE

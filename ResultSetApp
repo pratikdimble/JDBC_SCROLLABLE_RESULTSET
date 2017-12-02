@@ -106,7 +106,7 @@ public class ResultSetApp //CLASS STARTS
 				}
 		
 		
-			System.out.print("\n\n----END OF PROGRAMME----by Pratik(11:30 Batch)-----\n");
+			System.out.print("\n\n----END OF PROGRAMME----by Pratik-----\n");
 
 	}			//MAIN() METHOD ENDS
 

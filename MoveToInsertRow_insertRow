@@ -22,7 +22,7 @@ public class MoveToInsertRow_insertRow 	//CLASS STARTS
 			st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			br=new BufferedReader(new InputStreamReader(System.in));
 			
-			String sql="Select * from emp10";		//WRITING THE SQL QUERY	
+			String sql="Select * from newemp";		//WRITING THE SQL QUERY	
 			rs=st.executeQuery(sql);
 			
 			rs.moveToInsertRow();			//MOVE RS CURSOR TO THE ENDOF RS OBJECT
